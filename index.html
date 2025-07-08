@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    
+</head>
+
+<body>
+
+    <button onclick="reorderPage()">RESET</button>
+
+    <div class="main-page">
+        <div class="welcome-message">Hi There</div>
+        <div class="book">
+            <div class="back-cover"></div>
+            <div class="clips" id="clipsContainer"></div>
+
+            <div class="bookmarks">
+                <div class="bookmark experience zoomable" onclick="goToPage(1);loadExperience();">Experience</div>
+                <div class="bookmark p-projects zoomable" onclick="goToPage(2);loadPersonalProjects();loadPersonalProjectCards()">Personal Projects</div>
+                <div class="bookmark c-projects zoomable" onclick="goToPage(3);loadContributedProjects()">Contributed Projects</div>
+                <div class="bookmark contacts zoomable" onclick="goToPage(4);loadContacts()">Contacts</div>
+            </div>
+            <div class="page" id="page1">
+                <div class="front"> My NoteBook</div>
+                <div class="back"></div>
+                <div class="click-zone" onclick="goToPage(1);loadExperience();"></div>
+            </div>
+            <div class="page" id="page2">
+                <div class="front" ></div>
+                <div class="back"></div>
+                <div class="click-zone" onclick="goToPage(2);loadPersonalProjects();"></div>
+            </div>
+            <div class="page" id="page3">
+                <div class="front">Projects</div>
+                <div class="back"></div>
+                <div class="click-zone" onclick="goToPage(3);loadContributedProjects();"></div>
+            </div>
+            <div class="page" id="page4">
+                <div class="front">Projects (contributed) </div>
+                <div class="back"></div>
+                <div class="click-zone" onclick="goToPage(4);loadContacts()"></div>
+            </div>
+            <div class="page" id="page5">
+                <div class="front">Contact Me</div>
+                <div class="back"></div>
+                <div class="click-zone"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal placeholder (invisible until triggered) -->
+    <div id="modalOverlay" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()"></div>
+    </div>
+
+   <div class="magnifier" id="magnifier"></div>
+</body>
+
+<script src="./script.js"></script>
+</html>

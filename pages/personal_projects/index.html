@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <div class="content-page" ondblclick="viewContentWindow('page3')">
+        <div class="title">Personal Projects</div>  
+        <div class="project__description">
+        </div>
+        
+    </div>
+    <script>
+        fetch("../../shared/project_card/index.html")
+            .then((response) => response.text())
+            .then((data) => {
+                document
+                    .getElementsByClassName("project__description")[0].innerHTML = data;
+            })
+            .catch((error) => console.error("Error loading content:", error));
+    </script>
+</body>
+
+
+</html>
