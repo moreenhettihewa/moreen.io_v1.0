@@ -9,29 +9,32 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #f4f4f4;
+  background: #483535;
+  --clipWidth: 1.5em;
+  --clipHeight: 3em;
 }
 
-.main-page {
-  display: flex;
+.scene {
+  width: 30em;
+  height: 40em;
+  transform-style: preserve-3d;
+  transform: rotateX(10deg) rotateY(-10deg) rotateZ(8deg);
 }
 
 .welcome-message {
   font-size: xx-large;
   color: blueviolet;
 }
-
+/* 
 .book {
   position: relative;
-  width: 22vw;
-  height: 50vh;
-  perspective: 3000px;
-  transform: rotatex(10deg) rotateY(-30deg) rotateZ(10deg);
-  box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.3);
-  transform-style: preserve-3d;
-}
+  width: 30em;
+  height: 40em;
+  /* transform: rotateX(10deg) rotateY(-10deg) rotateZ(8deg); */
+  /* box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.3);
+} */ 
 
-.book::before {
+/* .book::before {
   content: "";
   position: absolute;
   top: 20px;
@@ -39,9 +42,9 @@ body {
   width: 100%;
   height: calc(100% - 20px);
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  border-radius: 3%;
   pointer-events: none;
-}
+} */
 
 .bookmarks {
   margin-left: 0.5em;
@@ -55,12 +58,13 @@ body {
 .bookmark {
   cursor: pointer;
   background-color: rgb(29, 224, 158);
-  width: 6em;
-  color: rgb(33, 47, 47);
+  clip-path: polygon(0 0, 0% 100%, 100% 100%, 70% 50%, 100% 0);
+  width: 8em;
+  color: rgb(69, 93, 93);
   height: 4.5em;
   margin-bottom: 1em;
   max-height: 3em;
-  box-shadow: 5px 4px 2px black;
+  box-shadow: inset 1px -4px 2px rgb(147, 122, 122);
 }
 
 .bookmark.experience {
@@ -75,93 +79,63 @@ body {
   background-color: rgb(19, 168, 118);
 }
 
-
+/* 
 .book::after {
   box-shadow: 10px 10px 10px black;
+} */
+
+.pages > .page {
+  position: absolute;
+  width: 30em;
+  height: 40em;
+  background-color: whitesmoke;
+  text-align: center;
+  border-radius: 3%;
 }
 
 .page {
-  position: absolute;
-  width: 100%;
-  height: 100%;
   transform-style: preserve-3d;
-  transition: transform 1s;
+  transition: transform 2s;
   transform-origin: top;
-  border: #ccc 2px solid 20px;
-}
-
-.clip {
-  width: 2px;
-  height: 20px;
-  border: 3px solid gray;
-  border-radius: 50%;
-  border-right: none;
-  z-index: 10;
-}
-
-.clip_hole {
-  width: 11px;
-  height: 11px;
-  border-radius: 100%;
-  background-color: black;
-  top: 18px;
-  left: -10px;
-  position: relative;
-  z-index: 9;
-}
-
-.clips {
-  position: absolute;
-  top: -5px;
-  display: flex;
-  padding: 0 20px;
-  z-index: 11;
-}
-
-
-.clip-hider {
-  background-color: rgb(172, 56, 135);
-  top: -10px;
-  /* Show half of the clip above the page */
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  left: 10px;
-  /* Adjust as needed */
-  width: 10px;
-  height: 20px;
-  z-index: 10;
+  transform: translateY(2pxms);
+  border: 2px solid rgb(37, 34, 34);
+  border-left: none;
+  border-top: none;
 }
 
 .page.flipped {
-  transform: rotateX(300deg);
+  transform: rotateX(340deg);
   transform-origin: top;
 }
 
-.front,
-.back {
+.page__front,
+.page__back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
   background: whitesmoke;
-  border: 1px solid #624646;
+  /* border: 1px solid #624646; */
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
+  border-radius: 3%;
+
 }
 
-.front {
-  border-bottom-left-radius: 8%;
-  border-bottom-right-radius: 5%;
-  border-top-left-radius: 4%;
-  border-top-right-radius: 4%;
-}
-
-.back {
+.page__back {
   transform: rotateX(180deg);
+}
+
+
+.page .clickable {
+  bottom: 0%;
+  position: absolute;
+  width: 30em;
+  height: 4em;
+  cursor: pointer;
 }
 
 /* Only clickable at bottom */
@@ -171,43 +145,92 @@ body {
   height: 50px;
   width: 100%;
   cursor: pointer;
-  z-index: 5;
 }
 
-#page1 {
-  z-index: 5;
+
+.clip-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 1.5em;
+  background: transparent;
+  gap: 1em;
 }
 
-#page2 {
-  z-index: 4;
+.clip {
+  transform: rotateY(60deg);
+  border-radius: 50%;
+  height: var(--clipHeight);
+  width: var(--clipWidth);
+  box-sizing: border-box;
+  border: 6px solid gray;
+  box-shadow: inset 2px 2px 2px #423f3f;
+  z-index: 500;
 }
 
-#page3 {
-  z-index: 3;
+.front,
+.back > .clip {
+  width: var(--clipWidth);
+  height: var(--clipHeight);
+  margin-top: -1.5em;
 }
 
-#page4 {
-  z-index: 2;
+.front,
+.back {
+  position: relative;
+  z-index: 500;
+  width: calc(var(--clipWidth) / 2);
 }
 
-#page5 {
+.front {
+  left: 0%;
+  overflow: hidden;
+}
+
+.back {
   z-index: 1;
+  right: 0%;
 }
+
+.clip-container__front,
+.clip-container__back {
+  gap: 1.4em;
+  position: absolute;
+}
+
+.page__holes {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  gap: 1.4em;
+  margin-left: 1.8em;
+}
+
+.hole {
+  width: 0.75em;
+  height: 0.75em;
+  background: black;
+  border-radius: 50%;
+  margin-top: 1em;
+  box-sizing: border-box;
+  box-shadow: inset 2px 2px 1px white
+}
+
 
 .book ::after {
   color: bisque;
-  border: 2em solid greenyellow;
+  border: 0.5em solid greenyellow;
 }
 
 .back-cover {
   position: absolute;
-  width: 103%;
+  width: 100.05%;
   left: 5px;
-  height: 103%;
+  height: 101%;
   background: #4b3832;
   z-index: 0;
   border-radius: 20px;
-  border-bottom-left-radius: 35px;
+  border-bottom-left-radius: 20px;
   box-shadow: inset -3px 0 10px rgba(79, 3, 3, 0.2);
 }
 

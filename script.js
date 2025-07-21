@@ -1,23 +1,56 @@
 const totalPages = 5;
+
 let currentFlippedPage = 0;
 
-const container = document.getElementById("clipsContainer");
+function createClips(containerId, sideClassName, count = 13) {
+  const containerClip = document.getElementById(containerId);
+  if (!containerClip) return;
 
-const width_of_book = document.getElementsByClassName("book")[0].scrollWidth;
+  for (let i = 0; i < count; i++) {
+    const sideElement = document.createElement("div");
+    sideElement.className = sideClassName;
 
-const number_of_clips = (width_of_book) / 28;
-for (let i = 0; i < number_of_clips; i++) {
-  const clip = document.createElement("div");
-  clip.className = "clip";
-  container.appendChild(clip);
+    const clip = document.createElement("div");
+    clip.className = "clip";
+    sideElement.appendChild(clip);
+    containerClip.appendChild(sideElement);
+  }
+}
 
-  const clip_bind = document.createElement("div");
-  clip_bind.className = "clip";
-  container.appendChild(clip_bind);
+function renderClipContainer() {
+  createClips("clipFrontContainer", "front");
+  createClips("clipBackContainer", "back");
+}
 
-  const clip_hole = document.createElement("div");
-  clip_hole.className = "clip_hole";
-  container.appendChild(clip_hole);
+
+function addPageHoles(holeCount = 13) {
+  const pages = document.getElementsByClassName("page");
+  for (const page of pages) {
+    const pageHolesContainerElement = document.createElement("div");
+    pageHolesContainerElement.className = "page__holes";
+
+    for (let h = 0; h < holeCount; h++) {
+      const holeElement = document.createElement("div");
+      holeElement.className = "hole";
+      pageHolesContainerElement.appendChild(holeElement);
+    }
+    page.appendChild(pageHolesContainerElement);
+  }
+}
+
+function reorderPages() {
+  const pages = document.querySelectorAll(".page");
+  const total = pages.length;
+
+  pages.forEach((page, index) => {
+    const i = index + 1;
+    // Bring unflipped pages to top
+    if (i <= currentFlippedPage) {    
+      page.style.zIndex = i;
+    } else {
+      page.style.zIndex = total - i + 50;
+    }
+  });
 }
 
 function goToPage(target) {
@@ -34,41 +67,19 @@ function goToPage(target) {
   reorderPages();
 }
 
-function reorderPages() {
-  const pages = document.querySelectorAll(".page");
-  const total = pages.length;
-
-  pages.forEach((page, index) => {
-    const i = index + 1;
-    // Bring unflipped pages to top
-    if (i <= currentFlippedPage) {
-      page.style.zIndex = i;
-    } else {
-      page.style.zIndex = total - i + 1;
-    }
-  });
-}
-
-function reorderPage() {
-  flippedPages = [];
-  const pages = document.querySelectorAll(".page");
-  pages.forEach((page, index) => {
-    page.classList.remove("flipped");
-    page.style.zIndex = pages.length - index;
-  });
-}
-
 // Navigate to each page and the contents are loaded via a separate HTML page
 
 function loadExperience() {
-  fetch("./pages/experience/index.html")
-    .then((response) => response.text())
-    .then((data) => {
-      document
-        .getElementById("page2")
-        .getElementsByClassName("front")[0].innerHTML = data;
-    })
-    .catch((error) => console.error("Error loading content:", error));
+  setTimeout(() => {
+    fetch("./pages/experience/index.html")
+      .then((response) => response.text())
+      .then((data) => {
+        document
+          .getElementById("page2")
+          .getElementsByClassName("page__front")[0].innerHTML = data;
+      })
+      .catch((error) => console.error("Error loading content:", error));
+  }, 100); // 2000 ms = 2 seconds
 }
 
 function loadContributedProjects() {
@@ -77,7 +88,7 @@ function loadContributedProjects() {
     .then((data) => {
       document
         .getElementById("page4")
-        .getElementsByClassName("front")[0].innerHTML = data;
+        .getElementsByClassName("page__front")[0].innerHTML = data;
     })
     .catch((error) => console.error("Error loading content:", error));
 }
@@ -88,7 +99,7 @@ function loadPersonalProjects() {
     .then((data) => {
       document
         .getElementById("page3")
-        .getElementsByClassName("front")[0].innerHTML = data;
+        .getElementsByClassName("page__front")[0].innerHTML = data;
     })
     .catch((error) => console.error("Error loading content:", error));
 }
@@ -99,15 +110,22 @@ function loadContacts() {
     .then((data) => {
       document
         .getElementById("page5")
-        .getElementsByClassName("front")[0].innerHTML = data;
+        .getElementsByClassName("page__front")[0].innerHTML = data;
     })
     .catch((error) => console.error("Error loading content:", error));
 }
+
+// Render everything
+renderClipContainer();
+addPageHoles();
+
 
 // reordering the pages on reload
 window.onload = () => {
   reorderPages();
 };
+
+
 
 function closeModal(event) {
   const modal = document.getElementById("modalOverlay");
