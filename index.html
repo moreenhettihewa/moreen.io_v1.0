@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
-    
 </head>
 
 <body>
@@ -12,49 +11,62 @@
     <button onclick="reorderPages()">RESET</button>
 
     <div class="scene">
-        <div class="welcome-message">Hi There</div>
+        
         <div class="book">
+            
             <div class="back-cover"></div>
-            <div class="clip-container clip-container__front" id="clipFrontContainer">
+
+            <div class="clip-container" id="clipContainer">
+                <div class="clips" id="clips"></div>
             </div>
+
+            <!-- BOOKMARKS -->
             <div class="bookmarks">
-                <div class="bookmark experience zoomable" onclick="goToPage(1);loadExperience();">Experience</div>
-                <div class="bookmark p-projects zoomable" onclick="goToPage(2);loadPersonalProjects();loadPersonalProjectCards()">Personal Projects</div>
-                <div class="bookmark c-projects zoomable" onclick="goToPage(3);loadContributedProjects()">Contributed Projects</div>
-                <div class="bookmark contacts zoomable" onclick="goToPage(4);loadContacts()">Contacts</div>
+                <!-- Bookmark (Experience) -->
+                <div class="bookmark experience" onclick="goToPage(1);loadExperience();">Experience</div>
+
+                <!-- Bookmark (Personal Projects) -->
+                <div class="bookmark p-projects"
+                    onclick="goToPage(2);loadPersonalProjects();loadPersonalProjectCards()">Personal Projects</div>
+
+                <!-- Bookmark (Contributed Projects) -->
+                <div class="bookmark c-projects" onclick="goToPage(3);loadContributedProjects()">Contributed Projects
+                </div>
+
+                <!-- Bookmark (Contacts) -->
+                <div class="bookmark contacts" onclick="goToPage(4);loadContacts()">Contacts</div>
             </div>
+
+            <!-- PAGES -->
             <div class="pages">
-            <div class="page" id="page1">
-                <div class="page__front"> My NoteBook</div>
-                <div class="page__back"></div>
-                <div class="click-zone clickable" onclick="goToPage(1);loadExperience();"></div>
+                <div class="page" id="page1">
+                    <div class="page__front coverpage"> My NoteBook</div>
+                    <div class="page__back"></div>
+                    <div class="clickable" onclick="goToPage(1);loadExperience();"></div>
+                </div>
+                <div class="page" id="page2">
+                    <div class="page__front"></div>
+                    <div class="page__back"></div>
+                    <div class="clickable" onclick="goToPage(2);loadPersonalProjects();"></div>
+                </div>
+                <div class="page" id="page3">
+                    <div class="page__front">Projects</div>
+                    <div class="page__back"></div>
+                    <div class="clickable" onclick="goToPage(3);loadContributedProjects();"></div>
+                </div>
+                <div class="page" id="page4">
+                    <div class="page__front">Projects (contributed) </div>
+                    <div class="page__back"></div>
+                    <div class="clickable" onclick="goToPage(4);loadContacts()"></div>
+                </div>
+                <div class="page" id="page5">
+                    <div class="page__front">Contact Me</div>
+                    <div class="page__back"></div>
+                    <div class="clickable"></div>
+                </div>
             </div>
-            <div class="page" id="page2">
-                <div class="page__front" ></div>
-                <div class="page__back"></div>
-                <div class="click-zone clickable" onclick="goToPage(2);loadPersonalProjects();"></div>
-            </div>
-            <div class="page" id="page3">
-                <div class="page__front">Projects</div>
-                <div class="page__back"></div>
-                <div class="click-zone clickable" onclick="goToPage(3);loadContributedProjects();"></div>
-            </div>
-            <div class="page" id="page4">
-                <div class="page__front">Projects (contributed) </div>
-                <div class="page__back"></div>
-                <div class="click-zone clickable" onclick="goToPage(4);loadContacts()"></div>
-            </div>
-            <div class="page" id="page5">
-                <div class="page__front">Contact Me</div>
-                <div class="page__back"></div>
-                <div class="click-zone clickable"></div>
-            </div>
-
-            </div>
-
-             <div class="clip-container clip-container__back" id="clipBackContainer"></div>
         </div>
-        </div>
+    </div>
     </div>
 
     <!-- Modal placeholder (invisible until triggered) -->
@@ -62,8 +74,7 @@
         <div class="modal-content" onclick="event.stopPropagation()"></div>
     </div>
 
-   <div class="magnifier" id="magnifier"></div>
 </body>
-
 <script src="./script.js"></script>
+
 </html>

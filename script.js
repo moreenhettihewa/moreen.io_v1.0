@@ -9,17 +9,12 @@ function createClips(containerId, sideClassName, count = 13) {
   for (let i = 0; i < count; i++) {
     const sideElement = document.createElement("div");
     sideElement.className = sideClassName;
-
-    const clip = document.createElement("div");
-    clip.className = "clip";
-    sideElement.appendChild(clip);
     containerClip.appendChild(sideElement);
   }
 }
 
 function renderClipContainer() {
-  createClips("clipFrontContainer", "front");
-  createClips("clipBackContainer", "back");
+  createClips("clips", "arc");
 }
 
 
@@ -57,7 +52,7 @@ function goToPage(target) {
   for (let i = 1; i <= totalPages; i++) {
     const page = document.getElementById("page" + i);
     if (i <= target) {
-      page.classList.add("flipped");
+      page.classList.toggle('flipped');
     } else {
       page.classList.remove("flipped");
     }
@@ -150,40 +145,6 @@ function viewContentWindow(page) {
 
   modal.style.display = "block";
 }
-
-
-const magnifier = document.getElementById("magnifier");
-
-const scale = 2;
-
-document.querySelectorAll(".zoomable").forEach(target => {
-  target.addEventListener("mousemove", (e) => {
-    const rect = target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    magnifier.style.display = "block";
-    magnifier.style.left = `${e.pageX - magnifier.offsetWidth / 2}px`;
-    magnifier.style.top = `${e.pageY - magnifier.offsetHeight / 2}px`;
-
-    // Clear previous content
-    magnifier.innerHTML = "";
-
-    const clone = target.cloneNode(true);
-    clone.classList.add("magnifier-content");
-
-    // Position the zoomed content so that the area under the cursor is centered
-    clone.style.left = `${-x * scale + magnifier.offsetWidth / 2}px`;
-    clone.style.top = `${-y * scale + magnifier.offsetHeight / 2}px`;
-
-    magnifier.appendChild(clone);
-  });
-
-  target.addEventListener("mouseleave", () => {
-    magnifier.style.display = "none";
-    magnifier.innerHTML = "";
-  });
-});
 
 function loadPersonalProjectCards(){
    fetch("../../shared/project_card/index.html")

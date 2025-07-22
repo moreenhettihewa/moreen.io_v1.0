@@ -9,7 +9,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #483535;
+  background: #e4dada;
   --clipWidth: 1.5em;
   --clipHeight: 3em;
 }
@@ -17,34 +17,13 @@ body {
 .scene {
   width: 30em;
   height: 40em;
-  transform-style: preserve-3d;
-  transform: rotateX(10deg) rotateY(-10deg) rotateZ(8deg);
+  /* transform-style: preserve-3d; */
+  /* transform: rotateX(10deg) rotateY(-10deg) rotateZ(deg); */
+  transform: rotateX(20deg) rotateY(0deg) rotateZ(8deg);
+  perspective: 1500px;
 }
 
-.welcome-message {
-  font-size: xx-large;
-  color: blueviolet;
-}
-/* 
-.book {
-  position: relative;
-  width: 30em;
-  height: 40em;
-  /* transform: rotateX(10deg) rotateY(-10deg) rotateZ(8deg); */
-  /* box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.3);
-} */ 
-
-/* .book::before {
-  content: "";
-  position: absolute;
-  top: 20px;
-  left: 0;
-  width: 100%;
-  height: calc(100% - 20px);
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
-  border-radius: 3%;
-  pointer-events: none;
-} */
+/* ================== BOOK MARKS ================= */
 
 .bookmarks {
   margin-left: 0.5em;
@@ -52,23 +31,26 @@ body {
   position: absolute;
   left: 100%;
   top: 20%;
-  font-family: 'Bradley Hand';
+  font-family: ui-rounded;
+  font-size: 14px;
 }
 
 .bookmark {
   cursor: pointer;
-  background-color: rgb(29, 224, 158);
-  clip-path: polygon(0 0, 0% 100%, 100% 100%, 70% 50%, 100% 0);
-  width: 8em;
-  color: rgb(69, 93, 93);
-  height: 4.5em;
-  margin-bottom: 1em;
-  max-height: 3em;
-  box-shadow: inset 1px -4px 2px rgb(147, 122, 122);
+    background-color: rgb(29, 224, 158);
+    clip-path: polygon(1% 0%, 0% 100%, 100% 100%, 85% 50%, 100% 0);
+    width: 12em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 4.5em;
+    margin-bottom: 1em;
+    max-height: 3em;
+    box-shadow: inset 0px 0px 3px rgb(30 26 26);
 }
 
 .bookmark.experience {
-  background-color: rgb(226, 191, 144);
+  background-color: rgb(187, 131, 57);
 }
 
 .bookmark.p-projects {
@@ -79,10 +61,11 @@ body {
   background-color: rgb(19, 168, 118);
 }
 
-/* 
-.book::after {
-  box-shadow: 10px 10px 10px black;
-} */
+/* ================ PAGES ==================== */
+
+.pages {
+  transform-style: preserve-3d;
+}
 
 .pages > .page {
   position: absolute;
@@ -93,19 +76,11 @@ body {
   border-radius: 3%;
 }
 
-.page {
-  transform-style: preserve-3d;
-  transition: transform 2s;
-  transform-origin: top;
-  transform: translateY(2pxms);
-  border: 2px solid rgb(37, 34, 34);
-  border-left: none;
-  border-top: none;
-}
-
 .page.flipped {
-  transform: rotateX(340deg);
+  transform-style: preserve-3d;
   transform-origin: top;
+  transition: transform 2s;
+  transform: rotateX(300deg);
 }
 
 .page__front,
@@ -115,20 +90,21 @@ body {
   height: 100%;
   backface-visibility: hidden;
   background: whitesmoke;
-  /* border: 1px solid #624646; */
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
   font-weight: bold;
   border-radius: 3%;
+}
 
+.page__front {
+  background: #eee;
 }
 
 .page__back {
   transform: rotateX(180deg);
 }
-
 
 .page .clickable {
   bottom: 0%;
@@ -138,64 +114,43 @@ body {
   cursor: pointer;
 }
 
-/* Only clickable at bottom */
-.click-zone {
-  position: absolute;
-  bottom: 0;
-  height: 50px;
-  width: 100%;
-  cursor: pointer;
+.coverpage {
+  background-color: #69691c;
+
+  color: floralwhite;
+  font-family: fantasy;
 }
 
+/* =============== BOOK CLIP ====================== */
+
+.arc {
+  z-index: 500;
+  --a: 270deg;
+  width: 0.75em;
+  height: 3em;
+  transform: rotateZ(180deg);
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 4px #211e1e solid;
+  box-shadow: inset 2px 2px 2px black, 1px 2px 2px red;
+  mask: linear-gradient(#0000 0 0) content-box intersect,
+    conic-gradient(#000 var(--a), #86272700 0);
+}
+
+.clips {
+  display: flex;
+  position: absolute;
+  gap: 1.4em;
+  margin-top: -1.5em;
+}
 
 .clip-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-left: 1.5em;
+  margin-left: 0.5em;
   background: transparent;
   gap: 1em;
-}
-
-.clip {
-  transform: rotateY(60deg);
-  border-radius: 50%;
-  height: var(--clipHeight);
-  width: var(--clipWidth);
-  box-sizing: border-box;
-  border: 6px solid gray;
-  box-shadow: inset 2px 2px 2px #423f3f;
-  z-index: 500;
-}
-
-.front,
-.back > .clip {
-  width: var(--clipWidth);
-  height: var(--clipHeight);
-  margin-top: -1.5em;
-}
-
-.front,
-.back {
-  position: relative;
-  z-index: 500;
-  width: calc(var(--clipWidth) / 2);
-}
-
-.front {
-  left: 0%;
-  overflow: hidden;
-}
-
-.back {
-  z-index: 1;
-  right: 0%;
-}
-
-.clip-container__front,
-.clip-container__back {
-  gap: 1.4em;
-  position: absolute;
 }
 
 .page__holes {
@@ -213,13 +168,7 @@ body {
   border-radius: 50%;
   margin-top: 1em;
   box-sizing: border-box;
-  box-shadow: inset 2px 2px 1px white
-}
-
-
-.book ::after {
-  color: bisque;
-  border: 0.5em solid greenyellow;
+  box-shadow: inset 2px 2px 1px white;
 }
 
 .back-cover {
@@ -235,7 +184,7 @@ body {
 }
 
 .title {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: math;
 }
 
 .modal {
@@ -247,7 +196,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  animation:  ease-in 1s infinite;
+  animation: ease-in 1s infinite;
 }
 
 /* Modal content box */
@@ -262,33 +211,6 @@ body {
 }
 
 .modal-content .title {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: x-large;
-
-}
-
-.zoomable {
-  position: relative;
-  display: inline-block;
-}
-
-.magnifier {
-  margin-top: -7em;
-  margin-left: 6em;
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #555;
-  pointer-events: none;
-  display: none;
-  z-index: 1000;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-.magnifier-content {
-  transform: scale(2); /* Adjust zoom level */
-  transform-origin: top left;
-  position: absolute;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: x-large;
 }
