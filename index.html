@@ -22,18 +22,18 @@
             <!-- BOOKMARKS -->
             <div class="bookmarks">
                 <!-- Bookmark (Experience) -->
-                <div class="bookmark experience" onclick="goToPage(1);loadExperience();">Experience</div>
+                <div class="bookmark experience" onclick="goToPage(1);loadTemplateFromFile('./pages/experiences.html', 'experiences');">Experience</div>
 
                 <!-- Bookmark (Personal Projects) -->
                 <div class="bookmark p-projects"
-                    onclick="goToPage(2);loadPersonalProjects();loadPersonalProjectCards()">Personal Projects</div>
+                    onclick="goToPage(2);loadPersonalProjects();loadTemplateFromFile('./pages/personal-projects.html', 'personalProjects');">Personal Projects</div>
 
                 <!-- Bookmark (Contributed Projects) -->
                 <div class="bookmark c-projects" onclick="goToPage(3);loadTemplateFromFile('./pages/contributed-projects.html', 'contributed-projects-template');">Contributed Projects
                 </div>
 
                 <!-- Bookmark (Contacts) -->
-                <div class="bookmark contacts" onclick="goToPage(4);loadContacts()">Contacts</div>
+                <div class="bookmark contacts" onclick="goToPage(4);loadTemplateFromFile('./pages/contact-me.html', 'contactMe');">Contacts</div>
             </div>
 
             <!-- PAGES -->
@@ -44,21 +44,21 @@
                         <span>My NoteBook</span>
                     </div>
                     <div class="page__back"></div>
-                    <div class="clickable" onclick="goToPage(1);loadExperience();">
+                    <div class="clickable" onclick="goToPage(1);loadTemplateFromFile('./pages/experiences.html', 'experiences');">
                         <span class="material-symbols-outlined">double_arrow</span>
                     </div>
                 </div>
                 <div class="page" id="page2">
-                    <div class="page__front"></div>
+                    <div class="page__front" id="experiences"></div>
                     <div class="page__background"></div>
                     <div class="page__back"></div>
 
-                    <div class="clickable" onclick="goToPage(2);loadPersonalProjects();">
+                    <div class="clickable" onclick="goToPage(2);loadTemplateFromFile('./pages/personal-projects.html', 'personalProjects');">
                         <span class="material-symbols-outlined">double_arrow</span>
                     </div>
                 </div>
                 <div class="page" id="page3">
-                    <div class="page__front">Projects</div>
+                    <div class="page__front" id="personalProjects">Projects</div>
                     <div class="page__back"></div>
                     <div class="clickable" onclick="goToPage(3);loadTemplateFromFile('./pages/contributed-projects.html', 'contributed-projects-template');">
                         <span class="material-symbols-outlined">double_arrow</span>
@@ -67,12 +67,12 @@
                 <div class="page" id="page4">
                     <div class="page__front" id="contributed-projects-template"></div>
                     <div class="page__back"></div>
-                    <div class="clickable" onclick="goToPage(4);loadContacts()">
+                    <div class="clickable" onclick="goToPage(4);loadTemplateFromFile('./pages/contact-me.html', 'contactMe');">
                         <span class="material-symbols-outlined">double_arrow</span>
                     </div>
                 </div>
                 <div class="page" id="page5">
-                    <div class="page__front">Contact Me</div>
+                    <div class="page__front" id="contactMe">Contact Me</div>
                     <div class="page__back"></div>
                     <div class="clickable"></div>
                 </div>
