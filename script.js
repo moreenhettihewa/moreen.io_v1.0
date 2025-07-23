@@ -64,9 +64,37 @@ function goToPage(target) {
 
 // Navigate to each page and the contents are loaded via a separate HTML page
 
+
+function loadCoverIcon() {
+  const link = document.getElementById("coverpageIcon");
+  fetch("./shared/coverpage-icon/coverpage-icon.html")
+  .then((resp)=> resp.text())
+  .then((data)=>{
+    link.innerHTML = data
+  });
+}
+
+function loadTemplateFromFile(file, templateId) {
+  fetch(file)
+    .then(res => res.text())
+    .then(html => {
+      // const parser = new DOMParser();
+      // const doc = parser.parseFromString(html, 'text/html');
+      // const template = doc.querySelector(`template#${templateId}`);
+      document.getElementById(templateId).innerHTML = html;
+      if (template) {
+        const clone = template.content.cloneNode(true);
+        document.getElementById(templateId).innerHTML = html;
+      } else {
+        console.error(`Template with id '${templateId}' not found in ${file}`);
+      }
+    });
+}
+
+
 function loadExperience() {
   setTimeout(() => {
-    fetch("./pages/experience/index.html")
+    fetch("./pages/experience/experience.html")
       .then((response) => response.text())
       .then((data) => {
         document
@@ -78,7 +106,7 @@ function loadExperience() {
 }
 
 function loadContributedProjects() {
-  fetch("./pages/contributed_projects/index.html")
+  fetch("./pages/contributed-projects.html")
     .then((response) => response.text())
     .then((data) => {
       document
@@ -113,7 +141,7 @@ function loadContacts() {
 // Render everything
 renderClipContainer();
 addPageHoles();
-
+loadCoverIcon();
 
 // reordering the pages on reload
 window.onload = () => {
@@ -150,8 +178,8 @@ function loadPersonalProjectCards(){
    fetch("../../shared/project_card/index.html")
             .then((response) => response.text())
             .then((data) => {
-                document
-                    .getElementsByClassName("project__description")[0].innerHTML = data;
+                // document
+                //     .getElementsByClassName("project__description")[0].innerHTML = data;
             })
             .catch((error) => console.error("Error loading content:", error));
 }

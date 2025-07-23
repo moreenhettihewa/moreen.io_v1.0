@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=double_arrow" />
 </head>
 
 <body>
-
-    <button onclick="reorderPages()">RESET</button>
 
     <div class="scene">
         
@@ -30,7 +29,7 @@
                     onclick="goToPage(2);loadPersonalProjects();loadPersonalProjectCards()">Personal Projects</div>
 
                 <!-- Bookmark (Contributed Projects) -->
-                <div class="bookmark c-projects" onclick="goToPage(3);loadContributedProjects()">Contributed Projects
+                <div class="bookmark c-projects" onclick="goToPage(3);loadTemplateFromFile('./pages/contributed-projects.html', 'contributed-projects-template');">Contributed Projects
                 </div>
 
                 <!-- Bookmark (Contacts) -->
@@ -40,24 +39,37 @@
             <!-- PAGES -->
             <div class="pages">
                 <div class="page" id="page1">
-                    <div class="page__front coverpage"> My NoteBook</div>
+                    <div class="page__front coverpage">
+                        <div id="coverpageIcon"></div>
+                        <span>My NoteBook</span>
+                    </div>
                     <div class="page__back"></div>
-                    <div class="clickable" onclick="goToPage(1);loadExperience();"></div>
+                    <div class="clickable" onclick="goToPage(1);loadExperience();">
+                        <span class="material-symbols-outlined">double_arrow</span>
+                    </div>
                 </div>
                 <div class="page" id="page2">
                     <div class="page__front"></div>
+                    <div class="page__background"></div>
                     <div class="page__back"></div>
-                    <div class="clickable" onclick="goToPage(2);loadPersonalProjects();"></div>
+
+                    <div class="clickable" onclick="goToPage(2);loadPersonalProjects();">
+                        <span class="material-symbols-outlined">double_arrow</span>
+                    </div>
                 </div>
                 <div class="page" id="page3">
                     <div class="page__front">Projects</div>
                     <div class="page__back"></div>
-                    <div class="clickable" onclick="goToPage(3);loadContributedProjects();"></div>
+                    <div class="clickable" onclick="goToPage(3);loadTemplateFromFile('./pages/contributed-projects.html', 'contributed-projects-template');">
+                        <span class="material-symbols-outlined">double_arrow</span>
+                    </div>
                 </div>
                 <div class="page" id="page4">
-                    <div class="page__front">Projects (contributed) </div>
+                    <div class="page__front" id="contributed-projects-template"></div>
                     <div class="page__back"></div>
-                    <div class="clickable" onclick="goToPage(4);loadContacts()"></div>
+                    <div class="clickable" onclick="goToPage(4);loadContacts()">
+                        <span class="material-symbols-outlined">double_arrow</span>
+                    </div>
                 </div>
                 <div class="page" id="page5">
                     <div class="page__front">Contact Me</div>

@@ -1,0 +1,62 @@
+.cover-icon {
+    transform: rotate(90deg);
+    --iconColor:  rgb(79 52 22);
+}
+
+.cover-icon:hover {
+    transition: 2s;
+    --iconColor:yellow;
+}
+
+.book_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  --sideLen: 2em;
+}
+
+.square {
+  width: var(--sideLen);
+  height: var(--sideLen);
+  box-sizing: border-box;
+  border: 2px solid var(--iconColor);
+  transform: rotateZ(45deg);
+}
+
+.circle {
+  position: relative;
+  width: calc(var(--sideLen) / 2);
+  height: calc(var(--sideLen) / 2);
+  border: 1.5px solid var(--iconColor);
+  border-radius: 50%;
+}
+
+.circle_sm_l,
+.circle_sm_r {
+  bottom: 50%;
+  transform: scale(0.75);
+  position: absolute;
+}
+
+.circle_sm_l {
+  left: 50%;
+}
+
+.circle_sm_r {
+  right: 50%;
+}
+
+.line {
+  position: absolute;
+  width: 2px;
+  height: calc(var(--sideLen)*3);
+  background-color: var(--iconColor);
+  left: 50%;
+  right: 50%;
+  top: 50%;
+}
+
+.book_icon:nth-of-type(1) {
+  transform: rotate(180deg);
+}
