@@ -63,8 +63,6 @@ function goToPage(target) {
 }
 
 // Navigate to each page and the contents are loaded via a separate HTML page
-
-
 function loadCoverIcon() {
   const link = document.getElementById("coverpageIcon");
   fetch("./shared/coverpage-icon/coverpage-icon.html")
@@ -78,64 +76,8 @@ function loadTemplateFromFile(file, templateId) {
   fetch(file)
     .then(res => res.text())
     .then(html => {
-      // const parser = new DOMParser();
-      // const doc = parser.parseFromString(html, 'text/html');
-      // const template = doc.querySelector(`template#${templateId}`);
       document.getElementById(templateId).innerHTML = html;
-      if (template) {
-        const clone = template.content.cloneNode(true);
-        document.getElementById(templateId).innerHTML = html;
-      } else {
-        console.error(`Template with id '${templateId}' not found in ${file}`);
-      }
     });
-}
-
-
-function loadExperience() {
-  setTimeout(() => {
-    fetch("./pages/experience/experience.html")
-      .then((response) => response.text())
-      .then((data) => {
-        document
-          .getElementById("page2")
-          .getElementsByClassName("page__front")[0].innerHTML = data;
-      })
-      .catch((error) => console.error("Error loading content:", error));
-  }, 100); // 2000 ms = 2 seconds
-}
-
-function loadContributedProjects() {
-  fetch("./pages/contributed-projects.html")
-    .then((response) => response.text())
-    .then((data) => {
-      document
-        .getElementById("page4")
-        .getElementsByClassName("page__front")[0].innerHTML = data;
-    })
-    .catch((error) => console.error("Error loading content:", error));
-}
-
-function loadPersonalProjects() {
-  fetch("./pages/personal_projects/index.html")
-    .then((response) => response.text())
-    .then((data) => {
-      document
-        .getElementById("page3")
-        .getElementsByClassName("page__front")[0].innerHTML = data;
-    })
-    .catch((error) => console.error("Error loading content:", error));
-}
-
-function loadContacts() {
-  fetch("./pages/contacts/index.html")
-    .then((response) => response.text())
-    .then((data) => {
-      document
-        .getElementById("page5")
-        .getElementsByClassName("page__front")[0].innerHTML = data;
-    })
-    .catch((error) => console.error("Error loading content:", error));
 }
 
 // Render everything
@@ -147,39 +89,3 @@ loadCoverIcon();
 window.onload = () => {
   reorderPages();
 };
-
-
-
-function closeModal(event) {
-  const modal = document.getElementById("modalOverlay");
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-}
-
-function viewContentWindow(page) {
-  const modal = document.getElementById("modalOverlay");
-  const modalContent = modal.querySelector(".modal-content");
-
-  // Clone the original contact content
-  const original = document.getElementById(page).querySelector(".content-page").cloneNode(true);
-
-  // Remove onclick from the clone to prevent recursive modals
-  original.removeAttribute("ondblclick");
-
-  // Insert the cloned content
-  modalContent.innerHTML = ""; // Clear previous if any
-  modalContent.appendChild(original);
-
-  modal.style.display = "block";
-}
-
-function loadPersonalProjectCards(){
-   fetch("../../shared/project_card/index.html")
-            .then((response) => response.text())
-            .then((data) => {
-                // document
-                //     .getElementsByClassName("project__description")[0].innerHTML = data;
-            })
-            .catch((error) => console.error("Error loading content:", error));
-}

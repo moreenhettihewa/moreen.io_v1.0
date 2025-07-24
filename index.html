@@ -22,18 +22,18 @@
             <!-- BOOKMARKS -->
             <div class="bookmarks">
                 <!-- Bookmark (Experience) -->
-                <div class="bookmark experience" onclick="goToPage(1);loadTemplateFromFile('./pages/experiences.html', 'experiences');">Experience</div>
+                <div class="bookmark experience" onclick="goToPage(1);loadTemplateFromFile('./pages/experiences.html', 'experiences');"><span>Experience</span></div>
 
                 <!-- Bookmark (Personal Projects) -->
                 <div class="bookmark p-projects"
-                    onclick="goToPage(2);loadPersonalProjects();loadTemplateFromFile('./pages/personal-projects.html', 'personalProjects');">Personal Projects</div>
+                    onclick="goToPage(2);loadTemplateFromFile('./pages/personal-projects.html', 'personalProjects');"><span>Personal Projects</span></div>
 
                 <!-- Bookmark (Contributed Projects) -->
-                <div class="bookmark c-projects" onclick="goToPage(3);loadTemplateFromFile('./pages/contributed-projects.html', 'contributed-projects-template');">Contributed Projects
+                <div class="bookmark c-projects" onclick="goToPage(3);loadTemplateFromFile('./pages/contributed-projects.html', 'contributed-projects-template');"><span>Contributed Projects</span>
                 </div>
 
                 <!-- Bookmark (Contacts) -->
-                <div class="bookmark contacts" onclick="goToPage(4);loadTemplateFromFile('./pages/contact-me.html', 'contactMe');">Contacts</div>
+                <div class="bookmark contacts" onclick="goToPage(4);loadTemplateFromFile('./pages/contact-me.html', 'contactMe');"><span>Contact Me</span></div>
             </div>
 
             <!-- PAGES -->
@@ -50,7 +50,6 @@
                 </div>
                 <div class="page" id="page2">
                     <div class="page__front" id="experiences"></div>
-                    <div class="page__background"></div>
                     <div class="page__back"></div>
 
                     <div class="clickable" onclick="goToPage(2);loadTemplateFromFile('./pages/personal-projects.html', 'personalProjects');">
@@ -80,12 +79,6 @@
         </div>
     </div>
     </div>
-
-    <!-- Modal placeholder (invisible until triggered) -->
-    <div id="modalOverlay" class="modal" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()"></div>
-    </div>
-
 </body>
 <script src="./script.js"></script>
 
