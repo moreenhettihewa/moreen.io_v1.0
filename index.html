@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=double_arrow" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=double_arrow" />
 </head>
 
 <body>
 
     <div class="scene">
-        
+
         <div class="book">
-            
+
             <div class="back-cover"></div>
 
             <div class="clip-container" id="clipContainer">
@@ -22,18 +23,21 @@
             <!-- BOOKMARKS -->
             <div class="bookmarks">
                 <!-- Bookmark (Experience) -->
-                <div class="bookmark experience" onclick="goToPage(1);loadTemplateFromFile('./pages/experiences.html', 'experiences');"><span>Experience</span></div>
-
-                <!-- Bookmark (Personal Projects) -->
-                <div class="bookmark p-projects"
-                    onclick="goToPage(2);loadTemplateFromFile('./pages/personal-projects.html', 'personalProjects');"><span>Personal Projects</span></div>
+                <div class="bookmark experience"
+                    onclick="goToPage(1);loadTemplateFromFile('./pages/experiences.html', 'experiences');">
+                    <span>Experience</span>
+                </div>
 
                 <!-- Bookmark (Contributed Projects) -->
-                <div class="bookmark c-projects" onclick="goToPage(3);loadTemplateFromFile('./pages/contributed-projects.html', 'contributed-projects-template');"><span>Contributed Projects</span>
+                <div class="bookmark p-projects"
+                    onclick="goToPage(2);loadTemplateFromFile('./pages/contributed-projects-page-one.html', 'contributedProjectsTemplateOne');">
+                    <span>Projects</span>
                 </div>
 
                 <!-- Bookmark (Contacts) -->
-                <div class="bookmark contacts" onclick="goToPage(4);loadTemplateFromFile('./pages/contact-me.html', 'contactMe');"><span>Contact Me</span></div>
+                <div class="bookmark contacts"
+                    onclick="goToPage(8);loadTemplateFromFile('./pages/contact-me.html', 'contactMe');"><span>Contact
+                        Me</span></div>
             </div>
 
             <!-- PAGES -->
@@ -44,33 +48,65 @@
                         <span>My NoteBook</span>
                     </div>
                     <div class="page__back"></div>
-                    <div class="clickable" onclick="goToPage(1);loadTemplateFromFile('./pages/experiences.html', 'experiences');">
+                    <div class="clickable"
+                        onclick="goToPage(1);loadTemplateFromFile('./pages/experiences.html', 'experiences');">
                         <span class="material-symbols-outlined">double_arrow</span>
                     </div>
                 </div>
                 <div class="page" id="page2">
                     <div class="page__front" id="experiences"></div>
                     <div class="page__back"></div>
+                    <div class="clickable"
+                        onclick="goToPage(2);loadTemplateFromFile('./pages/contributed-projects-page-one.html', 'contributedProjectsTemplateOne');">
+                        <span class="material-symbols-outlined">double_arrow</span>
+                    </div>
+                </div>
 
-                    <div class="clickable" onclick="goToPage(2);loadTemplateFromFile('./pages/personal-projects.html', 'personalProjects');">
-                        <span class="material-symbols-outlined">double_arrow</span>
-                    </div>
-                </div>
                 <div class="page" id="page3">
-                    <div class="page__front" id="personalProjects">Projects</div>
+                    <div class="page__front" id="contributedProjectsTemplateOne"></div>
                     <div class="page__back"></div>
-                    <div class="clickable" onclick="goToPage(3);loadTemplateFromFile('./pages/contributed-projects.html', 'contributed-projects-template');">
+                    <div class="clickable"
+                        onclick="goToPage(3);loadTemplateFromFile('./pages/contributed-projects-page-two.html', 'contributedProjectsTemplateTwo');">
                         <span class="material-symbols-outlined">double_arrow</span>
                     </div>
                 </div>
+
                 <div class="page" id="page4">
-                    <div class="page__front" id="contributed-projects-template"></div>
+                    <div class="page__front" id="contributedProjectsTemplateTwo"></div>
                     <div class="page__back"></div>
-                    <div class="clickable" onclick="goToPage(4);loadTemplateFromFile('./pages/contact-me.html', 'contactMe');">
+
+                    <div class="clickable"
+                        onclick="goToPage(4);loadTemplateFromFile('./pages/personal-projects-page-one.html', 'personalProjectsOne');">
                         <span class="material-symbols-outlined">double_arrow</span>
                     </div>
                 </div>
+
                 <div class="page" id="page5">
+                    <div class="page__front" id="personalProjectsOne"></div>
+                    <div class="page__back"></div>
+                    <div class="clickable"
+                        onclick="goToPage(5);loadTemplateFromFile('./pages/personal-projects-page-two.html', 'personalProjectsTwo');">
+                        <span class="material-symbols-outlined">double_arrow</span>
+                    </div>
+                </div>
+                <div class="page" id="page6">
+                    <div class="page__front" id="personalProjectsTwo"></div>
+                    <div class="page__back"></div>
+                    <div class="clickable"
+                        onclick="goToPage(6);loadTemplateFromFile('./pages/personal-projects-page-three.html', 'personalProjectsThree');">
+                        <span class="material-symbols-outlined">double_arrow</span>
+                    </div>
+                </div>
+                <div class="page" id="page7">
+                    <div class="page__front" id="personalProjectsThree"></div>
+                    <div class="page__back"></div>
+                    <div class="clickable"
+                        onclick="goToPage(7);loadTemplateFromFile('./pages/contact-me.html', 'contactMe');">
+                        <span class="material-symbols-outlined">double_arrow</span>
+                    </div>
+                </div>
+
+                <div class="page" id="page8">
                     <div class="page__front" id="contactMe">Contact Me</div>
                     <div class="page__back"></div>
                     <div class="clickable"></div>
