@@ -1,4 +1,4 @@
-const totalPages = 5;
+const totalPages = 6;
 
 let currentFlippedPage = 0;
 
