@@ -5,7 +5,7 @@
 
 .cover-icon:hover {
     transition: 2s;
-    --iconColor:yellow;
+    --iconColor:rgb(234 206 38);
 }
 
 .book_icon {

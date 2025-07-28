@@ -67,9 +67,9 @@ body {
 
 .bookmark:hover {
   transition: 0.5s;
-  transform: scale(1.25);
+  transform: scale(1.1);
   box-shadow: inset 0px 0px 10px rgb(236, 240, 24);
-  color:rgb(236, 240, 24);
+  color:rgb(234 206 38);
 }
 
 .bookmark::after{
@@ -134,11 +134,11 @@ body {
     width: 4em;
     height: 3em;
     cursor: pointer;
-    color: rgb(160, 113, 52);
+    color: rgb(249, 155, 33);
 }
 
 .clickable:hover {
-  color: rgb(227, 115, 35);
+  color: rgb(234 206 38);
   transition: 0.5s;
   transform: scale(1.5);
 }
@@ -150,7 +150,6 @@ body {
   color: floralwhite;
   font-family: fantasy;
 }
-
 
 /* =============== BOOK CLIP ====================== */
 
@@ -177,7 +176,6 @@ body {
 .arc.flipped {
     animation: clipMove 2s ;
 }
-
 
 .clips {
   display: flex;
@@ -225,10 +223,6 @@ body {
   box-shadow: inset -3px 0 10px rgba(79, 3, 3, 0.2);
 }
 
-/* .title {
-  font-family: math;
-} */
-
 .modal {
   display: none;
   position: fixed;
@@ -260,4 +254,66 @@ body {
 
 .title {
   font-family: fantasy;
+}
+
+/* Experience page */
+
+.project {
+  margin-top: 1em;
+}
+
+.content {
+    color: dimgray;
+    font-family: cursive;
+    font-size: medium;
+    font-weight: 400;
+}
+
+.web-url {
+  font-size: 15px;
+  color: brown;
+}
+
+.tech {
+    padding-top: 0.5em;
+    font-size: 17px;
+    font-family: fantasy;
+    color: darkgoldenrod;
+}
+
+
+.card-image-line--single{
+    max-width: var(--cardWidth);
+    padding: 1px;
+    border: 1px solid;
+    margin-left: -4px;
+}
+
+.card-image-line--multiple {
+    display: flex;
+}
+
+.card-image-line--multiple img {
+    max-width: calc(var(--cardWidth)/3);
+    padding: 1px;
+    margin: 0.1px;
+    border: 1px solid;
+    inline-size: -webkit-fill-available;
+}
+
+.card-image-line--single img {
+      inline-size: -webkit-fill-available;
+      max-height: calc(var(--cardHeight)/1.6);
+}
+
+.card {
+    --cardHeight: 12em;
+    --cardWidth:25em;
+    max-width: var(--cardWidth);
+    max-height: var(--cardHeight);
+    overflow: hidden;
+}
+
+.card-image {
+    display: grid;
 }
